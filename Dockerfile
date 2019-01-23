@@ -11,6 +11,7 @@ COPY Pipfile.lock /usr/src/app/
 
 WORKDIR /usr/src/app
 
+RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --deploy
 RUN python manage.py collectstatic --no-input
