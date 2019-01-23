@@ -20,7 +20,8 @@ services:
     image: nginx:1.15.5-alpine
     ports:
       # Will be available @ localhost:80
-      - "80:80"
+      #- "80:80"
+      - "8083:80"
     depends_on:
       # Make sure Django's built so Nginx can serve its static content
       - django
@@ -41,7 +42,7 @@ services:
     depends_on:
       - db
       - redis
-    command: gunicorn appname.wsgi -c gunicorn.cfg
+    command: /bin/bash -c /usr/src/app/startapp.sh
     volumes:
       - ./_app:/usr/src/app
       # Django static files will go here so Nginx can access them
